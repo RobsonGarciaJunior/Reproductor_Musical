@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val buttonFav: ImageButton = findViewById(R.id.buttonFav)
         val musicBar: SeekBar = findViewById(R.id.idMusicBar)
 
-        //Calculates the value of current song minute based on the porcentage of the seekbar
+        //Calculates the value of current song minute based on the percentage of the seekbar
         findViewById<TextView>(R.id.currentSongMinute).text = transformFromSecondsToString(
             transformFromStringToSeconds(findViewById<TextView>(R.id.totalSongMinute).text.toString()) * musicBar.progress / 100
         )
@@ -69,23 +69,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun addToFav() {
         val buttonFav: ImageButton = findViewById(R.id.buttonFav)
-        if (favouriteSong) {
+        favouriteSong = if (favouriteSong) {
             buttonFav.setImageResource(android.R.drawable.btn_star_big_off)
-            favouriteSong = false
+            false
         } else {
-            favouriteSong = true
             buttonFav.setImageResource(android.R.drawable.btn_star_big_on)
+            true
         }
     }
 
     private fun changeFromPlayToPause() {
         val buttonPlayPause: ImageButton = findViewById(R.id.buttonPlayPause)
-        if (musicStatePlay) {
+        musicStatePlay = if (musicStatePlay) {
             buttonPlayPause.setImageResource(android.R.drawable.ic_media_play)
-            musicStatePlay = false
+            false
         } else {
             buttonPlayPause.setImageResource(android.R.drawable.ic_media_pause)
-            musicStatePlay = true
+            true
         }
     }
 

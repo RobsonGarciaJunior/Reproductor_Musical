@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AplicacionMusical_Actividad1_Robson_1EVA</string>
+    <string name="app_name">MusicApp</string>
     <string name="songTitle">Sangria</string>
     <string name="songArtist">Alx Beats</string>
     <string name="play">play</string>

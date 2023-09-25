@@ -8,9 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    //Preguntar a Ruben si vale que no guarde el progreso
-    // de la seekbar ya que se actualiza como metodo a siempre ser utilizado en el OnCreate
-
     private var favouriteSong: Boolean = false
     private var musicStatePlay: Boolean = false
 
@@ -23,8 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         //Calculates the value of current song minute based on the porcentage of the seekbar
         findViewById<TextView>(R.id.currentSongMinute).text = transformFromSecondsToString(
-            transformFromStringToSeconds(findViewById<TextView>(R.id.totalSongMinute).text.toString())
-                    * musicBar.progress / 100
+            transformFromStringToSeconds(findViewById<TextView>(R.id.totalSongMinute).text.toString()) * musicBar.progress / 100
         )
 
         buttonPlayPause.setOnClickListener {
@@ -103,7 +99,17 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         favouriteSong = savedInstanceState.getBoolean("favState")
         musicStatePlay = savedInstanceState.getBoolean("musicState")
-        addToFav()
-        changeFromPlayToPause()
+        restoreValues()
+    }
+
+    private fun restoreValues() {
+        val buttonPlayPause: ImageButton = findViewById(R.id.buttonPlayPause)
+        val buttonFav: ImageButton = findViewById(R.id.buttonFav)
+        if (favouriteSong) {
+            buttonFav.setImageResource(android.R.drawable.btn_star_big_on)
+        }
+        if (musicStatePlay) {
+            buttonPlayPause.setImageResource(android.R.drawable.ic_media_pause)
+        }
     }
 }
